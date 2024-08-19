@@ -13,11 +13,8 @@ use Illuminate\Http\Request;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/test', [DocumentController::class, 'test']);
+Route::get('/', [DocumentController::class, 'index'])->name('document.index');
 Route::get('/document',[DocumentController::class, 'index'])->name('document.index');
 Route::get('/document/create',[DocumentController::class, 'create'])->name('document.create');
 Route::post('/document/upload',[DocumentController::class, 'store'])->name('document.store');

@@ -19,10 +19,11 @@ class DocumentController extends Controller
     public function index()
     {
         //
-        $client = new Client(env('DROPBOX_TOKEN'));
-        $adapter = new DropboxAdapter($client);
-        $folders = $client->listFolder($this->path);
-        dd($folders);
+        // $client = new Client(env('DROPBOX_TOKEN'));
+        // $adapter = new DropboxAdapter($client);
+        // $folders = $client->listFolder($this->path);
+        // dd($folders);
+        return view('Document.index');
         
     }
 
@@ -110,4 +111,6 @@ class DocumentController extends Controller
         $link = $client->getTemporaryLink("$this->path/Benjie_Edroso2.pdf");
         return $link;
     }
+
+   
 }
