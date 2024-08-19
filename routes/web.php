@@ -18,9 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/document',[DocumentController::class, 'index'])->name('document.index');
 Route::get('/document/create',[DocumentController::class, 'create'])->name('document.create');
 Route::post('/document/upload',[DocumentController::class, 'store'])->name('document.store');
 Route::get('/document/download',[DocumentController::class, 'downloadFile'])->name('document.download');
-
-
+Route::get('/document/search', [DocumentController::class,'search'])->name('document.search');
+Route::get('/document/delete', [DocumentController::class,'deleteDoc'])->name('document.delete');
+Route::get('/document/update', [DocumentController::class,'updateDoc'])->name('document.update');

@@ -19,6 +19,11 @@ class DocumentController extends Controller
     public function index()
     {
         //
+        $client = new Client(env('DROPBOX_TOKEN'));
+        $adapter = new DropboxAdapter($client);
+        $folders = $client->listFolder($this->path);
+        dd($folders);
+        
     }
 
     /**
@@ -35,8 +40,10 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {      
-      
-        
+        $client = new Client(env('DROPBOX_TOKEN'));
+        $content = file_get_contents(__DIR__ . '/Benjie_Edroso.pdf');
+        $client->upload('/dropboxpath/Benjie_Edroso.pdf', $content, $mode='add');
+
     }
 
     /**
@@ -77,5 +84,30 @@ class DocumentController extends Controller
         $adapter = new DropboxAdapter($client);
         $file = $adapter->getUrl("$this->path/$filename");
         dd($file);
+    }
+
+    public function search(Request $request){
+      $client = new Client(env('DROPBOX_TOKEN'));
+      $searchResult = $client->search('res');
+        dd($searchResult);
+    }
+
+    public function deleteDoc(Request $request){
+        $client = new Client(env('DROPBOX_TOKEN'));
+        $client->delete("$this->path/resume.pdf");
+    }
+
+    public function updateDoc(Request $request){
+        $client = new Client(env("DROPBOX_TOKEN"));
+        $client->delete("$this->path/Benjie_Edroso.pdf");
+        $content = file_get_contents(__DIR__ . "Benjie_Edroso.pdf");
+        $client->upload("$this->path/Benjie_Edroso.pdf", $content, $mode = "add");
+    }
+
+    public function getDocLink(Request $request) : string
+    {
+        $client = new Client(env("DROPBOX_TOKEN"));
+        $link = $client->getTemporaryLink("$this->path/Benjie_Edroso.pdf");
+        return $link;
     }
 }
