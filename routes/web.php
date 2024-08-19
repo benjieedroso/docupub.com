@@ -25,3 +25,4 @@ Route::get('/document/download',[DocumentController::class, 'downloadFile'])->na
 Route::get('/document/search', [DocumentController::class,'search'])->name('document.search');
 Route::get('/document/delete', [DocumentController::class,'deleteDoc'])->name('document.delete');
 Route::get('/document/update', [DocumentController::class,'updateDoc'])->name('document.update');
+Route::get('document/link', [DocumentController::class, 'getDocLink'])->name('document.getlink');

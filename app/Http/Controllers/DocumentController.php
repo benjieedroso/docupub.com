@@ -94,20 +94,20 @@ class DocumentController extends Controller
 
     public function deleteDoc(Request $request){
         $client = new Client(env('DROPBOX_TOKEN'));
-        $client->delete("$this->path/resume.pdf");
+        $client->delete("$this->path/Benjie_Edroso.pdf");
     }
 
     public function updateDoc(Request $request){
         $client = new Client(env("DROPBOX_TOKEN"));
         $client->delete("$this->path/Benjie_Edroso.pdf");
-        $content = file_get_contents(__DIR__ . "Benjie_Edroso.pdf");
-        $client->upload("$this->path/Benjie_Edroso.pdf", $content, $mode = "add");
+        $content = file_get_contents(__DIR__ . "/Benjie_Edroso2.pdf");
+        $client->upload("$this->path/Benjie_Edroso2.pdf", $content, $mode = "add");
     }
 
     public function getDocLink(Request $request) : string
     {
         $client = new Client(env("DROPBOX_TOKEN"));
-        $link = $client->getTemporaryLink("$this->path/Benjie_Edroso.pdf");
+        $link = $client->getTemporaryLink("$this->path/Benjie_Edroso2.pdf");
         return $link;
     }
 }
