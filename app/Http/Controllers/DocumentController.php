@@ -18,7 +18,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
+        
         // $client = new Client(env('DROPBOX_TOKEN'));
         // $adapter = new DropboxAdapter($client);
         // $folders = $client->listFolder($this->path);
